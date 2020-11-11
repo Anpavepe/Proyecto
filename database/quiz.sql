@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 03, 2018 at 06:14 PM
--- Server version: 5.6.34-log
--- PHP Version: 7.2.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-11-2020 a las 18:06:39
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `quiz`
+-- Base de datos: `quiz`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Estructura de tabla para la tabla `admin`
 --
 
 CREATE TABLE `admin` (
@@ -35,7 +34,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `admin`
+-- Volcado de datos para la tabla `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
@@ -44,7 +43,7 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answer`
+-- Estructura de tabla para la tabla `answer`
 --
 
 CREATE TABLE `answer` (
@@ -54,7 +53,7 @@ CREATE TABLE `answer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `answer`
+-- Volcado de datos para la tabla `answer`
 --
 
 INSERT INTO `answer` (`id`, `qid`, `ansid`) VALUES
@@ -67,7 +66,7 @@ INSERT INTO `answer` (`id`, `qid`, `ansid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feedback`
+-- Estructura de tabla para la tabla `feedback`
 --
 
 CREATE TABLE `feedback` (
@@ -81,7 +80,7 @@ CREATE TABLE `feedback` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `feedback`
+-- Volcado de datos para la tabla `feedback`
 --
 
 INSERT INTO `feedback` (`id`, `name`, `username`, `subject`, `feedback`, `date`, `time`) VALUES
@@ -90,7 +89,7 @@ INSERT INTO `feedback` (`id`, `name`, `username`, `subject`, `feedback`, `date`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
+-- Estructura de tabla para la tabla `history`
 --
 
 CREATE TABLE `history` (
@@ -101,24 +100,26 @@ CREATE TABLE `history` (
   `level` int(11) NOT NULL,
   `correct` int(11) NOT NULL,
   `wrong` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `timestamp` bigint(50) NOT NULL,
   `status` varchar(40) NOT NULL,
   `score_updated` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `history`
+-- Volcado de datos para la tabla `history`
 --
 
 INSERT INTO `history` (`id`, `username`, `eid`, `score`, `level`, `correct`, `wrong`, `date`, `timestamp`, `status`, `score_updated`) VALUES
 (1, 'pravin', '5b85847bbe794', 3, 5, 2, 3, '2018-08-29 10:37:59', 1535538968, 'finished', 'true'),
-(2, 'mugunth', '5b85847bbe794', 11, 5, 4, 1, '2018-08-29 10:39:42', 1535539122, 'finished', 'true');
+(2, 'mugunth', '5b85847bbe794', 11, 5, 4, 1, '2018-08-29 10:39:42', 1535539122, 'finished', 'true'),
+(3, 'Juli', '5b85847bbe794', 0, 0, 0, 0, '2020-11-11 04:05:53', 1605067431, 'finished', 'true'),
+(4, '', '5b85847bbe794', 0, 0, 0, 0, '2020-11-11 04:03:53', 1605067433, 'ongoing', 'false');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `options`
+-- Estructura de tabla para la tabla `options`
 --
 
 CREATE TABLE `options` (
@@ -129,7 +130,7 @@ CREATE TABLE `options` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `options`
+-- Volcado de datos para la tabla `options`
 --
 
 INSERT INTO `options` (`id`, `qid`, `option`, `optionid`) VALUES
@@ -137,27 +138,17 @@ INSERT INTO `options` (`id`, `qid`, `option`, `optionid`) VALUES
 (14, '5b85857d00f34', ' Hello World! * 2', '5b85857d0af5f'),
 (15, '5b85857d00f34', 'Hello World!', '5b85857d0b347'),
 (16, '5b85857d00f34', 'None of the above.', '5b85857d0b72f'),
-(17, '5b85857d333f0', '( \'abcd\', 786 , 2.23, \'john\', 70.2 )', '5b85857d389e2'),
 (18, '5b85857d333f0', 'abcd', '5b85857d38dca'),
-(19, '5b85857d333f0', '(786, 2.23)', '5b85857d391b2'),
-(20, '5b85857d333f0', 'None of the above.', '5b85857d3959a'),
 (21, '5b85857d59559', 'int(x [,base])', '5b85857d69b15'),
 (22, '5b85857d59559', 'long(x [,base] )', '5b85857d69efd'),
 (23, '5b85857d59559', 'float(x)', '5b85857d6a2e5'),
 (24, '5b85857d59559', 'str(x)', '5b85857d6a6cd'),
-(25, '5b85857d917d6', 'unichr(x)', '5b85857d97980'),
-(26, '5b85857d917d6', 'ord(x)', '5b85857d97d68'),
-(27, '5b85857d917d6', 'hex(x)', '5b85857d98150'),
-(28, '5b85857d917d6', 'oct(x)', '5b85857d98538'),
-(29, '5b85857db810f', 'choice(seq)', '5b85857dbd701'),
-(30, '5b85857db810f', 'randrange ([start,] stop [,step])', '5b85857dbdae9'),
-(31, '5b85857db810f', 'random()', '5b85857dbded1'),
-(32, '5b85857db810f', 'seed([x])', '5b85857dbe2b9');
+(27, '5b85857d917d6', 'hex(x)', '5b85857d98150');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Estructura de tabla para la tabla `questions`
 --
 
 CREATE TABLE `questions` (
@@ -170,7 +161,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `questions`
+-- Volcado de datos para la tabla `questions`
 --
 
 INSERT INTO `questions` (`id`, `eid`, `qid`, `qns`, `choice`, `sn`) VALUES
@@ -183,7 +174,7 @@ INSERT INTO `questions` (`id`, `eid`, `qid`, `qns`, `choice`, `sn`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz`
+-- Estructura de tabla para la tabla `quiz`
 --
 
 CREATE TABLE `quiz` (
@@ -194,12 +185,12 @@ CREATE TABLE `quiz` (
   `wrong` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `time` bigint(20) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `quiz`
+-- Volcado de datos para la tabla `quiz`
 --
 
 INSERT INTO `quiz` (`id`, `eid`, `title`, `correct`, `wrong`, `total`, `time`, `date`, `status`) VALUES
@@ -208,28 +199,27 @@ INSERT INTO `quiz` (`id`, `eid`, `title`, `correct`, `wrong`, `total`, `time`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rank`
+-- Estructura de tabla para la tabla `rank`
 --
 
 CREATE TABLE `rank` (
   `id` int(100) NOT NULL,
   `username` varchar(50) NOT NULL,
   `score` int(11) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `rank`
+-- Volcado de datos para la tabla `rank`
 --
 
 INSERT INTO `rank` (`id`, `username`, `score`, `time`) VALUES
-(1, 'pravin', 3, '2018-08-29 10:37:59'),
-(2, 'mugunth', 11, '2018-08-29 10:39:42');
+(3, 'Juli', 0, '2020-11-11 04:05:53');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE `user` (
@@ -244,19 +234,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `rollno`, `branch`, `gender`, `username`, `phno`, `password`) VALUES
-(4, 'Kadhamburi', '732116104026', 'ECE', 'M', 'kadhu', 9887661361, 'b59c67bf196a4758191e42f76670ceba'),
-(3, 'Kiran', '732116104022', 'CSE', 'M', 'kiran', 9876543212, 'b59c67bf196a4758191e42f76670ceba'),
-(2, 'Mugunthan', '732116104036', 'CSE', 'M', 'mugunth', 9514444471, 'b59c67bf196a4758191e42f76670ceba'),
-(5, 'Pravin', '732116104049', 'CSE', 'M', 'pravin', 8769891099, 'c86da2729ab8f79d8f582e9abc469eb0');
+(7, 'Daniel', '113', 'ECE', 'M', 'daniel', 2356, '81dc9bdb52d04dc20036dbd8313ed055'),
+(6, 'Juli', '182', 'CSE', 'M', 'Juli', 312566, '9d495f91834f74ab8c169a346159a9f6');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_answer`
+-- Estructura de tabla para la tabla `user_answer`
 --
 
 CREATE TABLE `user_answer` (
@@ -269,7 +257,7 @@ CREATE TABLE `user_answer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_answer`
+-- Volcado de datos para la tabla `user_answer`
 --
 
 INSERT INTO `user_answer` (`id`, `qid`, `ans`, `correctans`, `eid`, `username`) VALUES
@@ -288,53 +276,53 @@ INSERT INTO `user_answer` (`id`, `qid`, `ans`, `correctans`, `eid`, `username`) 
 (13, '5b85857db810f', '5b85857dbded1', '5b85857dbd701', '5b85847bbe794', 'mugunth');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `admin`
+-- Indices de la tabla `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `answer`
+-- Indices de la tabla `answer`
 --
 ALTER TABLE `answer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `history`
+-- Indices de la tabla `history`
 --
 ALTER TABLE `history`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `options`
+-- Indices de la tabla `options`
 --
 ALTER TABLE `options`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `questions`
+-- Indices de la tabla `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `quiz`
+-- Indices de la tabla `quiz`
 --
 ALTER TABLE `quiz`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `rank`
+-- Indices de la tabla `rank`
 --
 ALTER TABLE `rank`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`),
@@ -342,60 +330,69 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `user_answer`
+-- Indices de la tabla `user_answer`
 --
 ALTER TABLE `user_answer`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT de la tabla `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `answer`
+-- AUTO_INCREMENT de la tabla `answer`
 --
 ALTER TABLE `answer`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `history`
+-- AUTO_INCREMENT de la tabla `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `options`
+-- AUTO_INCREMENT de la tabla `options`
 --
 ALTER TABLE `options`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
--- AUTO_INCREMENT for table `questions`
+-- AUTO_INCREMENT de la tabla `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `quiz`
+-- AUTO_INCREMENT de la tabla `quiz`
 --
 ALTER TABLE `quiz`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rank`
+-- AUTO_INCREMENT de la tabla `rank`
 --
 ALTER TABLE `rank`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT for table `user_answer`
+-- AUTO_INCREMENT de la tabla `user_answer`
 --
 ALTER TABLE `user_answer`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;COMMIT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

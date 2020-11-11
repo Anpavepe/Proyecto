@@ -396,11 +396,11 @@ if (@$_GET['q'] == 'result' && @$_GET['eid']) {
       <tr style="color:darkgreen"><td style="vertical-align:middle">Correct Answer&nbsp;<span class="glyphicon glyphicon-ok-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $r . '</td></tr> 
     <tr style="color:red"><td style="vertical-align:middle">Wrong Answer&nbsp;<span class="glyphicon glyphicon-remove-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $w . '</td></tr>
     <tr style="color:orange"><td style="vertical-align:middle">Unattempted&nbsp;<span class="glyphicon glyphicon-ban-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . ($total - $r - $w) . '</td></tr>
-    <tr style="color:darkblue"><td style="vertical-align:middle">Score&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
+    <tr style="color:darkblue"><td style="vertical-align:middle">Score&nbsp;<span class="" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
         $q = mysqli_query($con, "SELECT * FROM rank WHERE  username='$username' ") or die('Error157');
         while ($row = mysqli_fetch_array($q)) {
             $s = $row['score'];
-            echo '<tr style="color:#990000"><td style="vertical-align:middle">Overall Score&nbsp;<span class="glyphicon glyphicon-stats" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
+            echo '<tr style="color:#990000"><td style="vertical-align:middle">Overall Score&nbsp;<span class="" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
         }
         echo '<tr></tr></table></div><div class="panel"><br /><h3 align="center" style="font-family:calibri">:: Detailed Analysis ::</h3><br /><ol style="font-size:20px;font-weight:bold;font-family:calibri;margin-top:20px">';
         $q = mysqli_query($con, "SELECT * FROM questions WHERE eid='$_GET[eid]'") or die('Error197');
@@ -546,10 +546,6 @@ if (@$_GET['q'] == 3) {
 }
 ?>
 </div></div></div></div>
-<div class="row footer">
- <div class="col-md-2 box"></div>
-<div class="col-md-2 box">
-<a href="feedback.php" style="color:lightyellow;text-decoration:underline" onmouseover="this.style('color:yellow')" target="new">Feedback</a></div>
 
 </body>
 </html>
