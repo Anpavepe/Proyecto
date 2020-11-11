@@ -119,6 +119,28 @@ if (@$_GET['q'] == 1) {
             }
         }
     }
+    $c = 0;
+    echo '</table></div><div class="panel" style="padding-top:1px;padding-left:15%;padding-right:15%;word-wrap:break-word"><h3 align="center" style="font-family:calibri">:: General Instructions ::</h3><br /><ul type="circle"><font style="font-size:14px;font-family:calibri">';
+    $file = fopen("instructions.txt", "r");
+    while (!feof($file)) {
+        echo '<li>';
+        $string = fgets($file);
+        $num    = strlen($string) - 1;
+        $c      = str_split($string);
+        for ($i = 0; $i < $num; $i++) {
+            $last = $c[$i];
+            if ($c[$i] == ' ' && $last == ' ') {
+                echo '&nbsp;';
+            } else {
+                echo $c[$i];
+            }
+        }
+        echo "</li><br />";
+    }
+    
+    fclose($file);
+    echo '</font></ul></div>';
+    
 }
 ?>
 <?php
@@ -140,6 +162,7 @@ if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2 && isset($_SESSION['6e447159425
                         while ($row = mysqli_fetch_array($q)) {
                             $sun = $row['score'];
                         }
+                        
                         $sun = $s + $sun;
                         $q = mysqli_query($con, "UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE username= '$username'") or die('Error174');
                     }
