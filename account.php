@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="icon" href="favicon.ico" type="image/icon" sizes="16x16">
+<link rel="icon" href="libro.ico" type="image/icon" sizes="16x16">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Skill's Breaker</title>
+<title>Modulo Lectura</title>
 <link  rel="stylesheet" href="css/bootstrap.min.css"/>
  <link  rel="stylesheet" href="css/bootstrap-theme.min.css"/>    
  <link rel="stylesheet" href="css/main.css">
@@ -29,7 +29,7 @@ include_once 'dbConnection.php';
 <div class="header">
 <div class="row">
 <div class="col-lg-6">
-<span class="logo">Skill's Breaker</span></div>
+<span class="logo">Modulo Lectura</span></div>
 <div class="col-md-4 col-md-offset-2">
  <?php
 include_once 'dbConnection.php';
@@ -119,28 +119,6 @@ if (@$_GET['q'] == 1) {
             }
         }
     }
-    $c = 0;
-    echo '</table></div><div class="panel" style="padding-top:1px;padding-left:15%;padding-right:15%;word-wrap:break-word"><h3 align="center" style="font-family:calibri">:: General Instructions ::</h3><br /><ul type="circle"><font style="font-size:14px;font-family:calibri">';
-    $file = fopen("instructions.txt", "r");
-    while (!feof($file)) {
-        echo '<li>';
-        $string = fgets($file);
-        $num    = strlen($string) - 1;
-        $c      = str_split($string);
-        for ($i = 0; $i < $num; $i++) {
-            $last = $c[$i];
-            if ($c[$i] == ' ' && $last == ' ') {
-                echo '&nbsp;';
-            } else {
-                echo $c[$i];
-            }
-        }
-        echo "</li><br />";
-    }
-    
-    fclose($file);
-    echo '</font></ul></div>';
-    
 }
 ?>
 <?php
@@ -162,7 +140,6 @@ if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2 && isset($_SESSION['6e447159425
                         while ($row = mysqli_fetch_array($q)) {
                             $sun = $row['score'];
                         }
-                        
                         $sun = $s + $sun;
                         $q = mysqli_query($con, "UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE username= '$username'") or die('Error174');
                     }
@@ -172,7 +149,6 @@ if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2 && isset($_SESSION['6e447159425
 
 if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2 && isset($_GET['start']) && $_GET['start'] == "start" && (!isset($_SESSION['6e447159425d2d']))) {
     $q = mysqli_query($con, "SELECT * FROM history WHERE username='$username' AND eid='$_GET[eid]' ") or die('Error197');
-    
     if (mysqli_num_rows($q) > 0) {
         $q = mysqli_query($con, "SELECT * FROM history WHERE username='$_SESSION[username]' AND eid='$_GET[eid]' ") or die('Error197');
         while ($row = mysqli_fetch_array($q)) {
@@ -572,35 +548,6 @@ if (@$_GET['q'] == 3) {
 </div></div></div></div>
 <div class="row footer">
  <div class="col-md-2 box"></div>
-<div class="col-md-3 box">
-<a href="#" data-toggle="modal" data-target="#developers" s style="color:lightyellow;" onmouseover="this.style('color:yellow')" target="new">Organized by Muki InfoTech,Erode</a>
-</div>
-<!-- Modal For Developers-->
-<div class="modal fade title1" id="developers">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" style="font-family:'typo' "><span style="color:orange">Muki InfoTech</span></h4>
-      </div>
-	  
-      <div class="modal-body">
-        <p>
-		<div class="row">
-		<div class="col-md-4">
-		 <img src="image/muki.jpg" width=100 height=100 alt="Mugunthan" class="img-rounded">
-		 </div>
-		 <div class="col-md-5">
-		<a href="" style="color:#202020; font-family:'typo' ; font-size:18px" title="">Muki Infotech</a>
-		<h4 style="color:#202020; font-family:'typo' ;font-size:16px" class="title1">+91 9514444471</h4>
-		<h4 style="font-family:'typo' ">mugunthkumar99@gmail.com</h4>
-		<h4 style="font-family:'typo' ">Nandha College of Technology ,Erode </h4></div></div>
-		</p>
-      </div>
-    
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 <div class="col-md-2 box">
 <a href="feedback.php" style="color:lightyellow;text-decoration:underline" onmouseover="this.style('color:yellow')" target="new">Feedback</a></div>
 
