@@ -28,6 +28,7 @@ if ($q3) {
     $_SESSION["username"] = $username;
     $_SESSION["name"]     = $name;
     
+    
     header("location:account.php?q=1");
 } else {
     header("location:index.php?q7=Username already exists. Please choose another&name=$name&username=$username&gender=$gender&phno=$phno&branch=$branch&rollno=$rollno");
